@@ -30,12 +30,12 @@ try {
     $app->setAutoload($autoLoad, $appDir);
     $app->setConfig($config);
 	$app->setRoutes($routes);
-	$app->setSessions();//start session
-//	$app->setDebugMode(TRUE);//debug 
-	$app->setView($viewsPath, $volt = TRUE);
-	//$app->setEvents();
+    $app->setSessions();//start session
+    //$app->setDebugMode(TRUE);//debug 
+    $app->setView($viewsPath, $volt = TRUE);
+    //$app->setEvents();
 
-	// Boom, Run
+	//  Run
 	$app->run();
 
 } catch(Exception $e) {

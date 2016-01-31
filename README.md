@@ -5,4 +5,14 @@ phalphp
  
 A PHP  application  for APIs,cli,and webapp using the Phalcon framework.
 
+
+usage:
+=============
+
+ [API](README-api.md)
+ 
+ [CLI](README-cli.md)
+ 
+ [Web APP](README-app.md)
+
  

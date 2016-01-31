@@ -71,7 +71,7 @@ try {
 	// Setup RESTful Routes
 	$app->setRoutes($routes);
 
-	// Boom, Run
+	//  Run
 	$app->run();
 
 } catch(Exception $e) {

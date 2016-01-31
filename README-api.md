@@ -27,7 +27,7 @@ openssl
 
 Database Configuration
 --------------
-Open  `php-hmac-rest-api/app/config.php` and setup your database connection credentials
+Open  `app/config.php` and setup your database connection credentials
 
 ```php
 $settings = array(
@@ -44,7 +44,7 @@ $settings = array(
 
 Import the tables into your mysql database
 ```bash
-mysql -u root -p your_database_schema < php-hmac-rest-api/mysql.data.sql
+mysql -u root -p your_database_schema < mysql.data.sql
 ```
 Import the tables into your Postgres Server
 ```bash
@@ -53,7 +53,7 @@ psql -U root -W -f postgres.data.sql your_database_schema
 
 Routes
 -------------
-Routes are stored in `php-hmac-rest-api/app/config/routes.php` as an array. A route has a method (HEAD, GET, POST, PATCH, DELETE, OPTIONS), uri (which can contain regular expressions) and handler/controller to point to.
+Routes are stored in `app/config/routes-api.php` as an array. A route has a method (HEAD, GET, POST, PATCH, DELETE, OPTIONS), uri (which can contain regular expressions) and handler/controller to point to.
 
 ```php
 $routes[] = [
@@ -106,25 +106,25 @@ Server Test
 With `PHP 5.4`, you can use its builtin web server to quickly test functionality. Make sure to be in the public directory when executing the command below.
 
 ```bash
-cd php-hmac-rest-api/public
-php -S localhost:8000 ../.htrouter.php
+cd phalphp/public
+php -S localhost:8000 ../htrouter.php
 ```
 
 Client Test
 -------------
 
-Open `php-hmac-rest-api/client-connect.php` and make sure the host is pointed to the proper url.
+Open `client-connect.php` and make sure the host is pointed to the proper url.
 
 
 When you're ready to test, go ahead and execute it (client application by default points to api.example.com)
 ```bash
-cd php-hmac-rest-api
+cd phalphp
 php client-connect.php
 ```
 Note, if you're using PHP 5.4 built web server (example above) and on the same box, make sure you point the client to the proper server.
 
 ```bash
-cd php-hmac-rest-api
+cd phalphp
 php client-connect.php localhost:8000
 ```
 

@@ -26,7 +26,7 @@ phalcon
 
 Database Configuration
 --------------
-Open  `php-cli-app-phalcon/app/config.php` and edit your database connection credentials
+Open  `phalphp/app/config.php` and edit your database connection credentials
 
 ```php
 $settings = array(
@@ -43,7 +43,7 @@ $settings = array(
 
 Import the tables into your MySQL Server
 ```bash
-mysql -u root -p your_database_schema < php-cli-app-phalcon/mysql.data.sql
+mysql -u root -p your_database_schema < phalphp/mysql.data.sql
 ```
 Import the tables into your Postgres Server
 ```bash
@@ -56,15 +56,15 @@ Command Line Examples
 General Syntax for running a task/job (Note: only Task is required)
 
 ```bash
-cd php-cli-app-phalcon/private 
+cd phalphp/private 
 php cli.php [Task] [Action] [Param1] [Param2] [...]
 ```
 
-Tasks are stored in `php-cli-app-phalcon/app/tasks` directory. The following example task is named `ExampleTask.php`.
+Tasks are stored in `phalphp/app/tasks` directory. The following example task is named `ExampleTask.php`.
 Basic example of how to kick off a cli job/task.
 
 ```bash
-cd php-cli-app-phalcon/private
+cd phalphp/private
 php cli.php Example test1 
 ```
 
@@ -104,7 +104,7 @@ php cli.php Example test1 --debug --record --single
 Adding New Tasks
 --------------------
 
-Go to `php-cli-app-phalcon/app/tasks` directory. This is where all the tasks are stored.
+Go to `phalphp/app/tasks` directory. This is where all the tasks are stored.
 Just go ahead and create a new file here (eg. `NewTask.php`)
 
 ```php
@@ -125,7 +125,7 @@ class NewTask extends \Phalcon\Cli\Task {
 
 Now run it!
 ```bash
-cd php-cli-app-phalcon/private
+cd phalphp/private
 php cli.php New work
 ```
 
@@ -134,7 +134,7 @@ Adding New Classes to Autoload
 
 Note: All classes must be namespaced if you use the provided autoloader.
 
-Open `php-cli-app-phalcon/app/config/autoload.php` and an element to the existing array.
+Open `phalphp/app/config/autoload-cli.php` and an element to the existing array.
 So, you have to use namespacing to load new classes.
 
 ```php
