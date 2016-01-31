@@ -1,11 +1,7 @@
-php-hmac-rest-api
+api
 =================
 
  
-
-PHP HMAC Restful API that uses Phalcon Micro framework (works with Phalcon 1.0+ and 2.0)
-
-The framework requires PHP 5.4+ (Could run on 5.3 if you replace 5.4 array syntax with the older php version)
 
 Why do this?
 http://www.thebuzzmedia.com/designing-a-secure-rest-api-without-oauth-authentication/

@@ -1,4 +1,4 @@
-php-cli-app-phalcon
+cli
 ===================
 
 
