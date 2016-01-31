@@ -10,45 +10,7 @@ Features
 - Easily force your application to run one instance at a time (handles fatal errors properly releasing the pid file)
 - Easily output debug information (even if your application has a fatal/runtime error)
 
-Requirements
----------
-PHP 5.4 or greater
-
-Required PHP Modules
-- Phalcon (http://phalconphp.com/en/download)
-- PDO (MySQL or Postgres or Sqlite driver)
-
-To check if `phalcon` module is installed/enabled for CLI use
-```bash
-$ php -m | grep -i "phalcon"
-phalcon
-```
-
-Database Configuration
---------------
-Open  `phalphp/app/config.php` and edit your database connection credentials
-
-```php
-$settings = array(
-        'database' => array(
-                'adapter' => 'Mysql',   /* Possible Values: Mysql, Postgres, Sqlite */
-                'host' => 'your_ip_or_hostname',
-                'username' => 'your_user',
-                'password' => 'your_password',
-                'name' => 'your_database_schema',
-                'port' => 3306
-        ),
-);
-```
-
-Import the tables into your MySQL Server
-```bash
-mysql -u root -p your_database_schema < phalphp/mysql.data.sql
-```
-Import the tables into your Postgres Server
-```bash
-psql -U root -W -f postgres.data.sql your_database_schema
-```
+ 
 
 Command Line Examples
 ----------------------
