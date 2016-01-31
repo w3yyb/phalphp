@@ -1,7 +1,8 @@
 <?php
 /**
+ * webapp
  *chirw
- curd example
+ *curd example,only for study  
  */
 namespace Controllers; 
 use Phalcon\Mvc\Model\Criteria;
@@ -41,17 +42,7 @@ class TopicController extends ControllerBase
         //$parameters["order"] = "id";
         
         
-/*
-        $topic = Topic::find($parameters);
-        if (count($topic) == 0) {
-            $this->flash->notice("no message");
-        }
 
-        $paginator = new Paginator(array(
-            "data" => $topic,
-            "limit"=> 10,
-            "page" => $numberPage
-        ));*/
 
         $builder = $this->modelsManager->createBuilder()
             ->columns('*')
@@ -105,10 +96,7 @@ class TopicController extends ControllerBase
             $this->tag->setDefault("topic", $topic->topic);
             $this->tag->setDefault("topictype", $topic->topictype);
             $this->tag->setDefault("groupid", $topic->groupid);
-            //$this->tag->setDefault("clientid", $topic->clientid);
-            //$this->tag->setDefault("subtime", $topic->subtime);
-            //$this->tag->setDefault("unsubtime", $topic->unsubtime);
-           // $this->tag->setDefault("status", $topic->status);
+       
             
         }
     }
@@ -131,11 +119,8 @@ class TopicController extends ControllerBase
         $topic->topic = $this->request->getPost("topic");
         $topic->info = $this->request->getPost("info");
         $topic->topictype = $this->request->getPost("topictype");
-        //$topic->groupid = $this->request->getPost("groupid");
-        //$topic->clientid = $this->request->getPost("clientid");
         $topic->subtime = time();
         $topic->adminname = $this->auth['name'];
-        //$topic->unsubtime = $this->request->getPost("unsubtime");
         $topic->status = 0;
         
 
@@ -184,11 +169,7 @@ class TopicController extends ControllerBase
 
         $topic->topic = $this->request->getPost("topic");
         $topic->topictype = $this->request->getPost("topictype");
-        //$topic->groupid = $this->request->getPost("groupid");
-        //$topic->clientid = $this->request->getPost("clientid");
-        //$topic->subtime = $this->request->getPost("subtime");
         $topic->unsubtime = time();
-        //$topic->status = $this->request->getPost("status");
         
 
         if (!$topic->save()) {
