@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Handling of the ProcessID(Pid) file's creation, removal and existance
+ * Handling of the ProcessID(Pid) file's creation, removal and existence
  *
  * @package Cli
  * @author Lenix
