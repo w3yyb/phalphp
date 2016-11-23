@@ -1,4 +1,0 @@
-<?= $this->getContent() ?>
-
-<!--<?= $name ?>-->
-
