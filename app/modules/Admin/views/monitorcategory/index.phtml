@@ -1,0 +1,177 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+  <style>
+  .am-input-group-label{
+    line-height: 31px;height:31px;
+  }
+  </style>
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">监控分类管理</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-2 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/monitorcategory/new"><span class="am-icon-plus"></span> 新增</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <?php echo $this->tag->form(array("monitorcategory/index", "autocomplete" => "off","class"=>"am-form")) ?>
+      <div class="am-u-md-10 am-cf am-fr" >
+          <div class="am-fr">
+            <div class="am-input-group" style="width:220px;">
+              <input type="text" class="am-form-field" name="categoryname" placeholder='请输入分类名称'>
+              <span class="am-input-group-btn">
+                <input class="am-btn am-btn-default" type="submit" value="搜索">
+              </span>
+          </div>
+        </div>
+        <div class="am-fr">
+            <div class="am-input-group input-group" style="width:220px;margin:0 20px;">
+              <span class="am-input-group-label">父级</span>
+              <select name="parentid">
+                <option value='all' <?php if($parentid =='all') echo 'selected'?>>请选择</option>
+                <?php foreach($parents as $k=>$v):?>
+                  <option value='<?php echo $k; ?>' <?php if(($k==$parentid || $parentid) && $parentid != 'all') echo 'selected'?>><?php echo $v; ?></option>
+                <?php endforeach;?>
+              </select>
+            </div>
+        </div>
+
+        <div class="am-fr">
+            <div class="am-input-group input-group" style="width:340px;">
+              <span class="am-input-group-label">社区</span>
+              <select class="data-am-selected" name="communityid" >
+                <option value=''>请选择</option>
+                <?php foreach($community as $communitylist):?>
+                  <option value='<?php echo $communitylist->communityid; ?>'
+                      <?php if($communitylist->communityid==$communityid) echo 'selected'?>>
+                    <?php echo $communitylist->communityname; ?></option>
+                <?php endforeach;?>
+              </select>
+            </div>
+        </div>
+
+      </div>
+      </form>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        <table class="am-table am-table-bd am-table-striped am-table-compact am-table-hover admin-content-table am-table-bordered">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>父级</th>
+            <th>社区</th>
+            <th>创建时间</th>
+            <th>管理</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php foreach ($page->items as $list) { ?>
+          <tr>
+            <td width="50"><?php echo $list->mcid ?></td>
+            <td width="160"><?php echo $list->categoryname ?></td>
+            <td width="160"><?php
+              if($list->parentid < 1){
+                echo '顶级分类';
+              }else {
+                foreach ($infolist as $name){
+                  if($name->mcid == $list->parentid){
+                    echo $name->categoryname;
+                  }
+                }
+              }
+              ?></td>
+            <td width="180"><?php
+              if($list->communityid < 1){
+                echo '无';
+              }else {
+                foreach ($community as $communitylist){
+                  if($communitylist->communityid == $list->communityid){
+                    echo $communitylist->communityname;
+                  }
+                }
+              }
+              ?></td>
+            <td width="190"><?php echo $list->createtime ?></td>
+
+            <td width="100">
+              <div class="lszh-inline-block">
+                <?php echo $this->tag->linkTo(array("monitorcategory/edit/" . $list->mcid, "编辑")); ?>
+                <a href="javascript:void(0);" data-href='/monitorcategory/delete/<?php echo $list->mcid ?>' class='delete'>删除</a>
+              </div>
+            </td>
+          </tr>
+    	  <?php } ?>
+          </tbody>
+          <tbody>
+        </table>
+        <?php if($page->total_pages > 1){?> 
+        <div class="am-cf">
+  			<div class="am-fr">
+    			<ul class="am-pagination">
+    				<li class="am-disabled"><?php echo $page->current, "/", $page->total_pages ?></li>
+      				<li><?php echo $this->tag->linkTo("monitorcategory/index?page=1", "首页") ?></li>
+      				<li><?php echo $this->tag->linkTo("monitorcategory/index?page=" . $page->before, "上一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("monitorcategory/index?page=" . $page->next, "下一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("monitorcategory/index?page=" . $page->last, "末页") ?></li>
+      				
+    			</ul>
+  			</div>
+		</div>
+		<?php }?>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd"></div>
+    <div class="am-modal-bd">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
+<?php $this->partial("public/footer") ?>
+<script type="text/javascript">
+$(function() {
+  $('.delete').on('click', function() {
+      $('.am-modal-hd').html('删除数据');
+      $('.am-modal-bd').html('你确定要删除这条记录吗？');
+      var deleteHref = $(this).attr("data-href");
+      $('#my-confirm').modal({
+        relatedTarget: this,
+        onConfirm: function(options) {
+          window.location.href = deleteHref;
+        },
+        // closeOnConfirm: false,
+        onCancel: function() {
+          return false;
+        }
+      });
+    });
+
+});
+</script>

@@ -1,0 +1,61 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">系统设置</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/setting/new"><span class="am-icon-plus"></span> 添加</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+          <table class="am-table am-table-bd am-table-striped am-table-compact am-table-hover admin-content-table am-table-bordered ">
+              <thead>
+              <tr>
+                  <th width="60">ID</th>
+                  <th width="60">标题</th>
+                  <th width="300">值</th>
+                  <th width="200">备注</th>
+                  <th width="80">管理</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php foreach ($setting as $list) { ?>
+                  <tr>
+                      <td width="60"><?php echo $list->id ?></td>
+                      <td width="60"><?php echo $list->name ?></td>
+                      <td width="300"><?php echo $list->value ?></td>
+                      <td width="200"><?php echo $list->info ?></td>
+                      <td width="80">
+                          <div class="lszh-inline-block">
+                              <?php echo $this->tag->linkTo(array("setting/edit/" . $list->id, "编辑")); ?>
+                              </div>
+                      </td>
+                  </tr>
+              <?php } ?>
+              </tbody>
+              <tbody>
+          </table>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

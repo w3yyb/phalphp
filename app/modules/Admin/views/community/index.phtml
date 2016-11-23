@@ -1,0 +1,111 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+  <style>
+    .am-input-group-label{
+      line-height: 31px;height:31px;
+    }
+  </style>
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">社区信息管理</strong></div>
+    </div>
+
+	<div class="am-g">
+
+      
+      <?php echo $this->tag->form(array("community/index", "autocomplete" => "off","class"=>"am-form")) ?>
+      <!--div class="am-u-md-3 am-cf am-fr" style="margin:10px 0;">
+        <div class="am-fr">
+          <div class="am-input-group">
+          
+            <input type="text" class="am-form-field" name="communityname">
+                <span class="am-input-group-btn">
+                  <input class="am-btn am-btn-default" type="submit" value="搜索">
+                </span>
+                
+          </div>
+        </div>
+      </div-->
+      <div class="am-u-md-10 am-cf am-fr" style="line-height: 30px">
+        <div class="am-input-group am-fr">
+          <input class="am-btn am-btn-default" type="submit" value="搜索" style="width:120px; " />
+        </div>
+        <div class="am-fr">
+          <div class="am-input-group am-fr" style="width:270px;margin: 0 20px;">
+            <span class="am-input-group-label">社区</span>
+            <input type="text" class="am-form-field" name="communityname" placeholder="请输入社区名称" value="<?php echo $communityname;?>">
+          </div>
+        </div>
+        <div class="am-fr">
+          <div class="am-input-group am-fr" style="width:180px;">
+            <span class="am-input-group-label">状态</span>
+            <select class="data-am-selected" name="status" >
+              <option value='all' <?php if($status == 'all') echo 'selected'?>>全部</option>
+              <option value='0' <?php if($status == '0') echo 'selected'?>>禁用</option>
+              <option value='1' <?php if($status == '1') echo 'selected'?>>启用</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        <table class="am-table am-table-bd am-table-striped am-table-compact am-table-hover admin-content-table am-table-bordered">
+          <thead>
+          <tr>
+            <th width="80">ID</th>
+            <th width="300">社区</th>
+            <th width="80">状态</th>
+            <th width="200">更新时间</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php foreach ($page->items as $list) { ?>
+          <tr>
+            <td><?php echo $list->communityid ?></td>
+            <td><?php echo $list->communityname ?></td>
+            <td><?php
+              if($list->status == 0){
+                echo '禁用';
+              }elseif($list->status ==1) {
+                echo '正常';
+              }else{echo '删除';}
+              ?></td>
+            <td><?php echo date('Y-m-d H:i:s',$list->createtime) ?></td>
+
+          </tr>
+    	  <?php } ?>
+          </tbody>
+          <tbody>
+        </table>
+        <?php if($page->total_pages > 1){?> 
+        <div class="am-cf">
+  			<div class="am-fr">
+    			<ul class="am-pagination">
+    				<li class="am-disabled"><?php echo $page->current, "/", $page->total_pages ?></li>
+      				<li><?php echo $this->tag->linkTo("community/index?page=1", "首页") ?></li>
+      				<li><?php echo $this->tag->linkTo("community/index?page=" . $page->before, "上一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("community/index?page=" . $page->next, "下一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("community/index?page=" . $page->last, "末页") ?></li>
+      				
+    			</ul>
+  			</div>
+		</div>
+		<?php }?>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

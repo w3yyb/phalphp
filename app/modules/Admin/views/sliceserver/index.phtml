@@ -1,0 +1,215 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <style>
+  .am-input-group-label{
+    line-height: 31px;height:31px;
+  }
+  </style>
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">切片服务器管理</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-2 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/sliceserver/add"><span class="am-icon-plus"></span> 新增</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <?php echo $this->tag->form(array("sliceserver/index", "autocomplete" => "off","class"=>"am-form")) ?>
+      <!--div class="am-u-md-3 am-cf">
+        <div class="am-fr">
+            <div class="am-input-group am-input-group-sm">
+            <input type="text" class="am-form-field" name="ssname" placeholder='请输入服务器名称' value="<?php echo $ssname;?>" />
+                <span class="am-input-group-btn">
+                  <input class="am-btn am-btn-default" type="submit" value="搜索">
+                </span>
+            </div>
+        </div>
+      </div-->
+        <div class="am-u-md-10 am-cf am-fr" style="line-height: 30px">
+            <div class="am-input-group am-fr">
+                <input class="am-btn am-btn-default" type="submit" value="搜索" style="width:120px; "/>
+            </div>
+            <div class="am-fr">
+              <div class="am-input-group am-fr" style="width:270px;margin: 0 20px;">
+                  <span class="am-input-group-label">切片服务器名称</span>
+                  <input type="text" class="am-form-field" name="ssname" placeholder="请输入服务器名称" value="<?php echo $ssname;?>">
+              </div>
+            </div>
+            <div class="am-fr">
+                  <div class="am-input-group am-fr" style="width:160px;margin:0 20px;">
+                      <span class="am-input-group-label">状态</span>
+                      <select class="data-am-selected" name="serverstatus" >
+                          <option value='all' <?php if($serverstatus == 'all') echo 'selected'?>>全部</option>
+                          <option value='0' <?php if($serverstatus == '0') echo 'selected'?>>禁用</option>
+                          <option value='1' <?php if($serverstatus == '1') echo 'selected'?>>启用</option>
+                      </select>
+                  </div>
+            </div>
+            <div class="am-fr">
+                <div class="am-input-group input-group" style="width:300px;">
+                    <span class="am-input-group-label">监控方案</span>
+                    <select class="data-am-selected" name="msid" >
+                        <option value=''>请选择</option>
+                        <?php foreach($searchmonitorsolution as $solution):?>
+                            <option value='<?php echo $solution->msid; ?>'
+                                <?php if($solution->msid==$msid) echo 'selected'?>>
+                                <?php echo $solution->name; ?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        <table class="am-table am-table-bd am-table-striped am-table-compact am-table-hover admin-content-table am-table-bordered ">
+          <thead>
+          <tr>
+            <th width="50">ID</th>
+            <th width="100">名称</th>
+            <th width="100">环境</th>
+            <th width="180">服务器ip</th>
+            <th width="180">监控方案</th>
+            <th width="140">最大支持监控点数</th>
+            <th width="70">状态</th>
+            <th width="180">创建时间</th>            
+            <th width="180">管理</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php foreach($page->items as $v){?>
+              <tr>
+              <td><?php echo $v->ssid ?></td>
+              <td><?php echo $v->ssname ?></td>
+              <td><?php echo $v->serverowner ?></td>
+              <td><?php echo $v->serverip ?></td>
+              <td><?php if(isset($monitorsolution[$v->msid])) echo $monitorsolution[$v->msid]->name; ?></td>
+              <td><?php echo $v->maxnum ?></td>
+              <td><?php if($v->serverstatus ==1){echo '正常';}else{echo '禁用';} ?></td>
+              <td><?php echo date('Y-m-d H:i:s',$v->createtime); ?></td>
+              
+              <td>
+              <div class="lszh-inline-block">
+              <!--?php if($v->serverstatus ==1){echo $this->tag->linkTo(array("sliceserver/updatestatus/" . $v->ssid.'/0', "禁用"));}else{echo $this->tag->linkTo(array("sliceserver/updatestatus/" . $v->ssid.'/1', "启用"));}?-->
+              <?php if($v->serverstatus ==1){?>
+              <a href="javascript:void(0);" data-href='/sliceserver/updatestatus/<?php echo $v->ssid ?>/0' class='forbid'>禁用</a>
+              <?php }else{?>
+              <a href="javascript:void(0);" data-href='/sliceserver/updatestatus/<?php echo $v->ssid ?>/1' class='open'>启用</a>
+              <?php }?>
+              <?php echo $this->tag->linkTo(array("sliceserver/detail/" . $v->ssid, "查看")); ?>
+              <?php echo $this->tag->linkTo(array("sliceserver/edit/" . $v->ssid, "编辑")); ?>
+              <a href="javascript:void(0);" data-href='/sliceserver/delete/<?php echo $v->ssid ?>' class='delete'>删除</a>
+             <!--  <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
+                <ul class="am-dropdown-content">
+                  <li><?php echo $this->tag->linkTo(array("sliceserver/edit/" . $v->ssid, "编辑")); ?></li>
+                  <li><?php echo $this->tag->linkTo(array("sliceserver/delete/" . $v->ssid, "删除")); ?></li>
+                </ul>
+              </div> -->
+              </div>
+            </td>
+              </tr>
+          <?php }?>
+          </tbody>
+        </table>
+       <?php if($page->total_pages > 1){?> 
+        <div class="am-cf">
+  			<div class="am-fr">
+    			<ul class="am-pagination">
+    				<li class="am-disabled"><?php echo $page->current, "/", $page->total_pages ?></li>
+      				<li><?php echo $this->tag->linkTo("sliceserver/index?page=1", "首页") ?></li>
+      				<li><?php echo $this->tag->linkTo("sliceserver/index?page=" . $page->before, "上一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("sliceserver/index?page=" . $page->next, "下一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("sliceserver/index?page=" . $page->last, "末页") ?></li>
+      				
+    			</ul>
+  			</div>
+		</div>
+		<?php }?> 
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd"></div>
+    <div class="am-modal-bd">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
+
+<?php $this->partial("public/footer") ?>
+<script type="text/javascript">
+$(function() {
+  $('.delete').on('click', function() {
+      $('.am-modal-hd').html('删除数据');
+      $('.am-modal-bd').html('你确定要删除这条记录吗？');
+      var deleteHref = $(this).attr("data-href");
+      $('#my-confirm').modal({
+        relatedTarget: this,
+        onConfirm: function(options) {
+          window.location.href = deleteHref;
+        },
+        // closeOnConfirm: false,
+        onCancel: function() {
+          return false;
+        }
+      });
+    });
+  $('.forbid').on('click', function() {
+      $('.am-modal-hd').html('禁用服务器');
+      $('.am-modal-bd').html('你确定要禁用这台服务器吗？');
+      var deleteHref = $(this).attr("data-href");
+      $('#my-confirm').modal({
+        relatedTarget: this,
+        onConfirm: function(options) {
+          window.location.href = deleteHref;
+        },
+        // closeOnConfirm: false,
+        onCancel: function() {
+          return false;
+        }
+      });
+    });
+  $('.open').on('click', function() {
+      $('.am-modal-hd').html('启用数据');
+      $('.am-modal-bd').html('你确定要启用这台服务器吗？');
+      var deleteHref = $(this).attr("data-href");
+      $('#my-confirm').modal({
+        relatedTarget: this,
+        onConfirm: function(options) {
+          window.location.href = deleteHref;
+        },
+        // closeOnConfirm: false,
+        onCancel: function() {
+          return false;
+        }
+      });
+    });
+
+});
+</script>

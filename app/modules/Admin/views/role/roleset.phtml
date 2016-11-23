@@ -1,0 +1,87 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">权限管理</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-9 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+        <?php echo $this->tag->form(["role/saveaccess","class"=>"am-form am-form-horizontal"]) ?>
+
+
+        <?php echo $this->getContent(); ?>
+        <table class="am-table am-table-bd am-table-striped am-table-compact am-table-hover  admin-content-table">
+          <thead>
+          <tr class="am-text-nowrap">
+            <th>ID</th>
+            <th>资源名称</th>
+            <th>资源描述</th>
+            <th>选择</th>
+            <th> </th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <?php foreach ($allresource as $resouce) { ?>
+          <tr>
+            <td><?php echo $resouce[0]['resourceid'] ?></td>
+            <td style="font-weight: bold;color:#0e90d2"><?php echo $resouce[0]['name'] ?>  </td>
+            <td> <?php echo $resouce[0]['resourceinfo'] ?></td>
+            <td>
+              <input type="checkbox" name="access[]" value="<?php echo $resouce[0]['resourceid'] ?>" <?php if (isset($resouce['selected'])) { echo 'checked="checked"';}?>>
+ </td>
+            <td>
+
+	        </td>
+
+
+            <td>
+
+            </td>
+          </tr>
+
+    	  <?php } ?>
+          <tr>
+              <td><?php echo $this->tag->hiddenField("roleid") ?></td>
+
+              <td><?php echo $this->tag->submitButton(["设置","class"=>"am-btn am-btn-primary"]) ?></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+          </tr>
+          </tbody>
+          <tbody>
+        </table>
+
+      </div>
+      </form>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

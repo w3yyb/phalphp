@@ -1,0 +1,136 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加服务器</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/sliceserver/index"><span class="am-icon-mail-reply"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php echo $this->tag->form(["sliceserver/create","class"=>"am-form am-form-horizontal lszh-validate"]) ?>
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd am-table-striped admin-content-table">
+    <tr>
+        <td width="150">
+            <label for="ssname">名称</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("ssname", "size" => 30, 'placeholder' => '请输入服务器名',"maxlength"=>"100","required"=>"")) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+    <tr>
+        <td width="150">
+            <label for="serverowner">环境</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->selectStatic(['serverowner',"required"=>""],$serverowner) ?>
+            </div>
+        </td>
+        <td>
+            <div class="lszh-validate-tip">
+                <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">    
+                  <div class="am-comment-main lszh-validate-tip-txt">
+                    <div class="am-comment-bd">服务器归属地</div>
+                  </div>
+                  <span class="lszh-validate-tip-star">*</span>
+                </span>
+            </div>
+
+        </td>
+    </tr>
+    <tr>
+        <td width="150">
+            <label for="serverip">服务器ip</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("serverip", "size" => 30, 'placeholder' => '请输入服务器ip',"required"=>"","class"=>"js-pattern-ip","data-validation-message" => "请输入正确的ip地址")) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+              <tr>
+                  <td width="220">
+                      <label for="msid">监控方案</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                          <?php echo  $msid ?>
+                      </div>
+                  </td>
+                  <td></td>
+              </tr>
+    <tr>
+        <td width="150">
+            <label for="maxnum">最大支持监控点数</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("maxnum", "size" => 30, 'placeholder' => '请输入最大支持监控点数',"maxlength"=>"9","data-validation-message" => "请输入整数的数字","class"=>"js-pattern-integer")) ?>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td width="150">
+            <label for="apiurl">切片服务api地址</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("apiurl", "size" => 30, 'placeholder' => '请输入切片服务的api地址',"maxlength"=>"255")) ?>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+     <tr>
+        <td width="150">
+            <label for="remark">备注</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textArea(["remark", "",'cols'=>'6','rows'=>10]) ?>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+
+
+    <tr>
+        <td width="150"></td>
+        <td width="450"><?php echo $this->tag->submitButton(["提交","class"=>"am-btn am-btn-primary"]) ?></td>
+        <td></td>
+    </tr>
+</table>
+ <?= $this->tag->endForm() ?>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

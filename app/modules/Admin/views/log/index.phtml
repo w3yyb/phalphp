@@ -1,0 +1,153 @@
+<?php $this->partial("public/header") ?>
+  <link rel="stylesheet" href="/assets/css/amazeui.datetimepicker-se.min.css">
+
+
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">操作日志管理</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-2 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="#"><span class="am-icon-plus">浏览</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <?php echo $this->tag->form(array("log/index", "autocomplete" => "off")) ?>
+      <div class="am-u-md-10 am-cf am-fr" style="line-height: 30px">
+
+
+        <div class="am-input-group am-input-group-sm am-fr" style="line-height: 30px">
+
+          <input class="am-btn am-btn-default" type="submit" value="搜索" style="width:120px; display:inline-block;vertical-align: top;padding:6px;margin-left:10px;">
+
+        </div>
+
+          <div class="am-u-sm-12 am-u-md-3 am-fr"  style="width:250px;margin-right:20px;">
+                <div class="am-input-group input-group am-input-group-sm" id='datetimepicker7'>
+                  <input class="am-form-field" type="text" name="etime" placeholder="结束时间"  style="height:33px">
+                  <span class="am-input-group-label datepickerbutton" style="line-height: 31px;height:31px;">
+                    <i class="icon-th am-icon-calendar"></i>
+                  </span>
+                </div>
+          </div>
+
+
+          <div class="am-u-sm-12 am-u-md-3 am-fr" style="width:250px;padding-right:0;">
+              <div class="am-input-group input-group am-input-group-sm" id='datetimepicker6'>
+                <input class="am-form-field" type="text" name="stime" placeholder="开始时间" style="height:33px">
+                <span class="am-input-group-label datepickerbutton"  style="line-height: 31px;height:31px;">
+                  <i class="icon-th am-icon-calendar"></i>
+                </span>
+              </div>
+        </div>
+  <div class="am-input-group am-input-group-sm am-fr">
+    <span class="am-fl am-input-group-label" style="width:30px;padding:0;"><i class="am-icon-user am-icon-fw"></i></span>
+    <input type="text" class="am-form-field" name="username" placeholder="请输入用户名"  style="width:150px;height:33px; display:inline-block;">
+  </div>
+
+
+
+      </div>
+      </form>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        <table class="am-table am-table-bd am-table-striped am-table-compact am-table-hover admin-content-table am-table-bordered">
+          <thead>
+          <tr>
+            <th width="60">ID</th>
+            <th width="90">用户名</th>
+            <th width="120">IP</th>
+            <th width="150">标题</th>
+            <th width="200">备注</th>
+            <th width="200">时间</th>
+            <th width="60">管理</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php foreach ($page->items as $log) { ?>
+          <tr>
+            <td><?php echo $log->id ?></td>
+            <td><?php echo $log->username ?></td>
+            <td><?php echo $log->ip ?></td>
+            <td><?php echo $log->title ?></td>
+            <td><?php echo $log->content ?></td>
+            <td><?php echo $log->addtime ?></td>
+            <td>
+              <a href="javascript:void(0);" data-href='/log/delete/<?php echo $log->id ?>' class='delete'>删除</a>
+            </td>
+          </tr>
+    	  <?php } ?>
+          </tbody>
+          <tbody>
+        </table>
+        <?php if($page->total_pages > 1){?> 
+        <div class="am-cf">
+  			<div class="am-fr">
+    			<ul class="am-pagination">
+    				<li class="am-disabled"><?php echo $page->current, "/", $page->total_pages ?></li>
+      				<li><?php echo $this->tag->linkTo("log/index?page=1", "首页") ?></li>
+      				<li><?php echo $this->tag->linkTo("log/index?page=" . $page->before, "上一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("log/index?page=" . $page->next, "下一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("log/index?page=" . $page->last, "末页") ?></li>
+      				
+    			</ul>
+  			</div>
+		</div>
+		<?php }?>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd"></div>
+    <div class="am-modal-bd">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
+<?php $this->partial("public/footer") ?>
+<script type="text/javascript">
+$(function() {
+  $('.delete').on('click', function() {
+      $('.am-modal-hd').html('删除数据');
+      $('.am-modal-bd').html('你确定要删除这条记录吗？');
+      var deleteHref = $(this).attr("data-href");
+      $('#my-confirm').modal({
+        relatedTarget: this,
+        onConfirm: function(options) {
+          window.location.href = deleteHref;
+        },
+        // closeOnConfirm: false,
+        onCancel: function() {
+          return false;
+        }
+      });
+    });
+
+});
+</script>

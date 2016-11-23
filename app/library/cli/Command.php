@@ -5,7 +5,7 @@
  *
  * a containter class that holds all attributes that make up a command
  *
- * @author Lenix
+ * @author Itv
  * @version 1.0
  * @package cli
  */

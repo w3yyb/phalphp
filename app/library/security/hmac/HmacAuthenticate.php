@@ -5,7 +5,7 @@
  * Hash Message Authentication Code
  *
  * @package Security
- * @author Lenix 
+ * @author Itv 
  * @version 1.0
  */
 

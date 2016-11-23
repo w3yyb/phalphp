@@ -1,6 +1,7 @@
 <?php
 //webapp
 namespace Models;
+
 class Admin extends \Phalcon\Mvc\Model
 {
 
@@ -22,11 +23,24 @@ class Admin extends \Phalcon\Mvc\Model
      */
     public $password;
 
-   
-  public function initialize() {
-		$this->setSource("admin");
-	}
-   
+    /**
+     *
+     * @var string
+     */
+    public $logintime;
+
+    /**
+     *
+     * @var string
+     */
+    public $regtime;
+
+    /**
+     *
+     * @var integer
+     */
+    public $roleid;
+
 
     /**
      * Independent Column Mapping.
@@ -34,17 +48,17 @@ class Admin extends \Phalcon\Mvc\Model
      *
      * @return array
      */
-    /*
     public function columnMap()
     {
         return array(
-            'id' => 'id', 
-            'username' => 'username', 
-            'password' => 'password', 
-            'logintime' => 'logintime', 
+            'id' => 'id',
+            'username' => 'username',
+            'password' => 'password',
+            'logintime' => 'logintime',
             'regtime' => 'regtime',
             'adminname' => 'adminname',
-            'info' => 'info'
+            'info' => 'info',
+            'roleid' => 'roleid'
         );
-    }*/
+    }
 }

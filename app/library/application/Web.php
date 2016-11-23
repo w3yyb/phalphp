@@ -3,7 +3,7 @@
 /**
  * Main Application for Web Application
  *
- * @author Lenix
+ * @author Itv
  * @version 1.0
  */
 namespace Application;
@@ -62,6 +62,26 @@ class Web extends \Phalcon\Mvc\Application implements IRun {
             ));
         });
 
+		$di->set('db2', function() use ($config) {
+			return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+					'adapter' => $config['db2']['adapter'],
+					'host' => $config['db2']['host'],
+					'username' => $config['db2']['username'],
+					'password' => $config['db2']['password'],
+					'dbname' => $config['db2']['name'],
+					'port' => $config['db2']['port']
+			));
+		});
+		$di->set('logdb', function() use ($config) {
+			return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+				'adapter' => $config['logdb']['adapter'],
+				'host' => $config['logdb']['host'],
+				'username' => $config['logdb']['username'],
+				'password' => $config['logdb']['password'],
+				'dbname' => $config['logdb']['name'],
+				'port' => $config['logdb']['port']
+			));
+		});
 		$di->set('elements', function() {
 			return new \Elements\Elements();
 		});
@@ -156,7 +176,7 @@ class Web extends \Phalcon\Mvc\Application implements IRun {
 
     public function setBaseUrl($base) {
         $di = $this->getDI();
-		$di->set('url', function() {
+		$di->set('url', function() use($base) {
 			$url = new \Phalcon\Mvc\Url();
 			$url->setBaseUri($base);
 			return $url;
@@ -166,9 +186,9 @@ class Web extends \Phalcon\Mvc\Application implements IRun {
 
 
     public function setView($viewPath = '../app/views/',$volt) {
-
+        $isdebug=$this->_debug;
         $di = $this->getDI();
-		$di->set('view', function() use ($viewPath,$volt) {
+		$di->set('view', function() use ($viewPath,$volt,$isdebug) {
 
 			$view = new \Phalcon\Mvc\View();
             $view->setViewsDir($viewPath);
@@ -197,7 +217,7 @@ class Web extends \Phalcon\Mvc\Application implements IRun {
                     ));
             }
 
-			if ($this->_debug) {
+			if ($isdebug) {
 					//	Track Views
 				$eventsManager = new \Phalcon\Events\Manager();
 
@@ -263,18 +283,19 @@ class Web extends \Phalcon\Mvc\Application implements IRun {
 			padding: 0;
 		}
 		</style>
-		<h7>Phalcon</h7>
+<h7>-----------------------------<br></h7>
+		<h7>Phalcon debug info</h7>
 		<table class='debug-table table table-striped table-condensed'>
 			<tr>
 				<td>Time</td>
 				<td>$time</td>
 			</tr>
 			<tr>
-				<td>Controller</td>
+				<td>Controller:</td>
 				<td>{$controller}</td>
 			</tr>
 			<tr>
-				<td>Action</td>
+				<td>Action:</td>
 				<td>{$action}</td>
 			</tr>";
 
@@ -291,7 +312,7 @@ class Web extends \Phalcon\Mvc\Application implements IRun {
 			<table class='debug-table table table-striped table-condensed'><tr><th>Session Name</th><th>Session Value</th></tr>";
 			echo "<tr><td>" . session_name() . "</td><td>" . session_id() . "</td></tr>";
 			foreach($_SESSION as $index => $value) {
-				echo "<tr><td>$index</td><td>" . printValue($value) . "</td></tr>";
+			//	echo "<tr><td>$index</td><td>" . $value . "</td></tr>";
 			}
 			echo "</table>";
 		}
@@ -299,7 +320,7 @@ class Web extends \Phalcon\Mvc\Application implements IRun {
 		//printSuperGlobal($_SESSION, "Session");
 		//printSuperGlobal($_POST, "Post");
 		//printSuperGlobal($_COOKIE, "Cookie");
-        echo 'welcome';
+        echo '-------------------------';
 
 
 		/*$queries = DatabaseFactory::getQueries();

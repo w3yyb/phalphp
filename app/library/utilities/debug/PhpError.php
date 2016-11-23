@@ -6,7 +6,7 @@
  *
  * @package Utilties
  * @subpackage Debug
- * @author Lenix
+ * @author Itv
  * @version 1.0
  * @link
  */

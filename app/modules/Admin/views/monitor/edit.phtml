@@ -1,0 +1,169 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">编辑监控点</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/monitor/index"><span class="am-icon-mail-reply"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php echo $this->tag->form(["monitor/save","class"=>"am-form am-form-horizontal lszh-validate"]) ?>
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd am-table-striped admin-content-table">
+
+    <tr>
+        <td width="140">
+            <label for="mname">名称</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("mname", "size" => 80, 'placeholder' => '请输入名称',"required"=>"")) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+              <tr>
+                  <td width="140">
+                      <label for="mcid">监控分类</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                          <?php echo $this->tag->selectStatic(['mcid',$monitorcategory,'','useEmpty'=>true,"emptyText"=>'请选择',"emptyValue"=>'',"required"=>""]) ?>
+                      </div>
+                  </td>
+                  <td><span class="lszh-validate-tip-star">*</span></td>
+              </tr>
+    <tr>
+        <td width="140">
+            <label for="ssid">切片服务器</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->selectStatic(['ssid',$solutions,'','useEmpty'=>true,"emptyText"=>'请选择',"emptyValue"=>'',"required"=>""]) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+         
+    
+    <tr>
+        <td width="140">
+            <label for="mac">mac地址</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("mac", "size" => 80, 'placeholder' => '请输入mac地址',"class"=>"js-pattern-macUrl","data-validation-message" => "请输入正确的mac地址")) ?>
+            </div>
+        </td>
+        <td><div class="lszh-validate-tip">
+                <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">    
+                  <div class="am-comment-main lszh-validate-tip-txt">
+                    <div class="am-comment-bd">摄像头MAC地址</div>
+                  </div>
+                </span>
+            </div>
+        </td>
+    </tr>
+      <tr>
+          <td width="140">
+              <label for="cid">摄像头型号</label>
+          </td>
+          <td width="450">
+              <div class="am-form-group">
+                  <?php echo $this->tag->selectStatic(['cid',$cameratype,'','useEmpty'=>true,"emptyText"=>'请选择',"emptyValue"=>'0']) ?>
+              </div>
+          </td>
+          <td></td>
+      </tr>
+    <tr>
+        <td width="140">
+            <label for="soucetype">源地址类型</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->selectStatic(['soucetype',$soucetype,'','useEmpty'=>true,"emptyText"=>'请选择',"emptyValue"=>'',"required"=>""]) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+    <tr>
+        <td width="140">
+            <label for="sourcepath">源地址</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("sourcepath", "size" => 80, 'placeholder' => '请输入源地址',"maxlength"=>"255","required"=>"","class"=>"js-pattern-stringUrl","data-validation-message" => "请输入正确的源地址（必填）")) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+
+    <tr>
+        <td width="140">
+            <label for="cameraip">摄像头ip</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("cameraip", "size" => 80, 'placeholder' => '请输入摄像头ip',"class"=>"js-pattern-ip","data-validation-message" => "请输入正确的ip地址")) ?>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td width="140"><?php echo $this->tag->hiddenField("mid") ?></td>
+        <td width="450"><?php echo $this->tag->submitButton(["设置","class"=>"am-btn am-btn-primary"]) ?></td>
+        <td></td>
+    </tr>
+</table>
+  </form>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>
+    <script>
+        $("#cid").change(function(){
+            $.ajax({
+                type: "POST",
+                dataType : "json",
+                url: "getSourcepath",
+                data: {cid:$("#cid").val(), soucetype:$("#soucetype").val()},
+                success: function(data){
+                    $('#sourcepath').val(data);
+                }});
+        });
+        $("#soucetype").change(function(){
+            $.ajax({
+                type: "POST",
+                dataType : "json",
+                url: "getSourcepath",
+                data: {cid:$("#cid").val(), soucetype:$("#soucetype").val()},
+                success: function(data){
+                    $('#sourcepath').val(data);
+                }});
+        });
+    </script>

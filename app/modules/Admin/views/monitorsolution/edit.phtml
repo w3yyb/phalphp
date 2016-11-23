@@ -1,0 +1,292 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">编辑监控方案</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/monitorsolution/index"><span class="am-icon-mail-reply"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php echo $this->tag->form(["monitorsolution/save","class"=>"am-form am-form-horizontal lszh-validate"]) ?>
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd am-table-striped admin-content-table">
+    <tr>
+        <td width="220">
+            <label for="name">方案名</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->textField(array("name", "size" => 30, 'placeholder' => '请输入方案名',"required" => "","maxlength" => "30")) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+    <tr>
+        <td width="220">
+            <label for="transtype">文件传输类型</label>
+        </td>
+        <td width="450">
+            <?php echo $this->tag->selectStatic(
+                [
+                    "transtype",
+                    [
+                        "1" => "file",
+                        "2"   => "remote",
+                    ]
+                ]
+            );?>
+             </td>
+        <td>
+            <div class="lszh-validate-tip">
+                <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">    
+                  <div class="am-comment-main lszh-validate-tip-txt">
+                    <div class="am-comment-bd">file:内存保存,remote:远程传输</div>
+                  </div>
+                </span>
+            </div>
+        </td>
+    </tr>
+              <tr>
+                  <td width="220">
+                      <label for="targetpath">远程传输路径</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("targetpath", "size" => 30, 'placeholder' => '请输入远程传输路径',"maxlength"=>"255","required" => "","class"=>"js-pattern-stringUrl","data-validation-message" => "选remote 时写远程传输服务器接受地址，选file时，写本地地址。禁止输入数字开头或中文地址")) ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="lszh-validate-tip">
+                        <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">
+                          <div class="am-comment-main lszh-validate-tip-txt">
+                            <div class="am-comment-bd">当选remote 时写远程传输服务器接受地址，当选file时，写本地地址</div>
+                          </div>
+                          <span class="lszh-validate-tip-star">*</span>
+                        </span>
+                    </div>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td width="220">
+                      <label for="storepath">本地存储路径</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("storepath", "size" => 255,"maxlength"=>"255", 'placeholder' => '请输入本地存储路径',"class"=>"js-pattern-stringUrl","data-validation-message" => "当选remote 时使用,文件转存实际地址。禁止输入数字开头或中文地址")) ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="lszh-validate-tip">
+                        <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">
+                          <div class="am-comment-main lszh-validate-tip-txt">
+                            <div class="am-comment-bd">当选remote 时使用,文件转存实际地址</div>
+                          </div>
+                        </span>
+                    </div>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td width="220">
+                      <label for="slicereportpath">切片信息汇报地址</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("slicereportpath", "size" => 30, 'placeholder' => '请输入切片信息汇报地址',"maxlength"=>"500","required"=>"","class"=>"js-pattern-httpUrl","data-validation-message" => "请输入正确地址如：http://www.reporturl.com")) ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="lszh-validate-tip">
+                        <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">
+                          <div class="am-comment-main lszh-validate-tip-txt">
+                            <div class="am-comment-bd">：notify</div>
+                          </div>
+                          <span class="lszh-validate-tip-star">*</span>
+                        </span>
+                    </div>
+                    </td>
+              </tr>
+
+              <tr>
+                  <td width="220">
+                      <label for="httpprefix">m3u8列表切片地址前缀</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("httpprefix", "size" => 30,"maxlength"=>"500", 'placeholder' => '请输入m3u8列表切片地址前缀',"required"=>"")) ?>
+                      </div>
+                  </td>
+                  <td><span class="lszh-validate-tip-star">*</span></td>
+              </tr>
+
+
+              <tr>
+                  <td width="220">
+                      <label for="slicenumber">本地存储切片数量</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("slicenumber", "size" => 30, 'placeholder' => '请输入本地存储切片数量',"maxlength"=>"9","required"=>"","data-validation-message" => "请输入整数的数字(必填)","class"=>"js-pattern-integer")) ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="lszh-validate-tip">
+                        <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">
+                          <div class="am-comment-main lszh-validate-tip-txt">
+                            <div class="am-comment-bd">0代表有保存，有回看，非0代表内存保存片数</div>
+                          </div>
+                          <span class="lszh-validate-tip-star">*</span>
+                        </span>
+                    </div>
+                    </td>
+              </tr>
+
+              <tr>
+                  <td width="220">
+                      <label for="cliptime">片长</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("cliptime", "size" => 30,"required"=>"", 'placeholder' => '请输入片长',"maxlength"=>"9","data-validation-message" => "请输入整数的数字，单位秒(必填)","class"=>"js-pattern-integer")) ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="lszh-validate-tip">
+                        <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">
+                          <div class="am-comment-main lszh-validate-tip-txt">
+                            <div class="am-comment-bd">单位秒</div>
+                          </div>
+                          <span class="lszh-validate-tip-star">*</span>
+                        </span>
+                    </div>
+                    </td>
+              </tr>
+
+              <tr>
+                  <td width="220">
+                      <label for="cachetime">传输缓存时间</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("cachetime", "size" => 30,"required"=>"", 'placeholder' => '请输入传输缓存时间',"maxlength"=>"9","data-validation-message" => "请输入整数的数字，单位秒(必填)","class"=>"js-pattern-integer")) ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="lszh-validate-tip">
+                        <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">
+                          <div class="am-comment-main lszh-validate-tip-txt">
+                            <div class="am-comment-bd">单位秒</div>
+                          </div>
+                          <span class="lszh-validate-tip-star">*</span>
+                        </span>
+                    </div>
+                  </td>
+              </tr>
+
+              <tr>
+                  <td width="220">
+                      <label for="speedfactor">远程传输速度因子</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->textField(array("speedfactor", "size" => 30, 'placeholder' => '请输入远程传输速度因子',"data-validation-message" => "请输入1.0-10之间的数字","class"=>"js-pattern-factorSpeed")) ?>
+                      </div>
+                  </td>
+                  <td>
+                    <div class="lszh-validate-tip">
+                        <span class="am-icon-md am-icon-question-circle-o lszh-validate-tip-icon">
+                          <div class="am-comment-main lszh-validate-tip-txt">
+                            <div class="am-comment-bd">至少1.0以上  1.0--10之间</div>
+                          </div>
+                        </span>
+                    </div>
+                    </td>
+              </tr>
+
+              <tr>
+                  <td width="220">
+                      <label for="isvoice">是否有声</label>
+                  </td>
+                  <td width="450">
+                      <div class="am-form-group">
+                      <?php echo $this->tag->selectStatic(
+                          [
+                              "isvoice",
+                              [
+                                  "1" => "有声",
+                                  "0"   => "无声",
+                              ]
+                          ]
+                      );?>
+                      </div>
+                   </td>
+                  <td> </td>
+              </tr>
+
+
+
+              <tr>
+                  <td width="220">
+                      <label for="remark">备注</label>
+                  </td>
+                  <td width="450">
+                      <?php echo $this->tag->textArea(
+                          [
+                              "remark",
+                              "",
+                              "cols" => "30",
+                              "rows" => 6,
+                          ]
+                      ) ?>                  </td>
+                  <td> </td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="status">状态</label>
+                  </td>
+                  <td width="450">
+                      <label>
+                      <input type="radio" name="status" value="1" <?php if ($status==1) echo 'checked="checked"';?>>启用</label>&nbsp;&nbsp;<label>
+                      <input type="radio" name="status" value="0" <?php if ($status==0) echo 'checked="checked"';?>>禁用</label></td>
+                  <td> </td>
+              </tr>
+
+
+    <tr>
+        <td width="220"><?php echo $this->tag->hiddenField("msid") ?></td>
+
+        <td width="450"><?php echo $this->tag->submitButton(["提交","class"=>"am-btn am-btn-primary"]) ?></td>
+                  <td></td>
+    </tr>
+</table>
+ <?= $this->tag->endForm() ?>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

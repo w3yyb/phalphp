@@ -1,0 +1,131 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">监控点信息</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/monitor/index"><span class="am-icon-mail-reply"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd   admin-content-table">
+    <tr>
+        <td>
+            <label for="ssname">监控点名称</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("mname", "size" => 30,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="serverowner">监控分类</label>
+        </td>
+        <td>
+             <?php echo $this->tag->textField(array("categoryname", "size" => 30, "disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="serverip">切片服务器</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("msname", "size" => 30,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="maxnum">源地址类型</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("soucetype", "size" => 30,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="apiurl">源地址</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("sourcepath", "size" => 50,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="apiurl">摄像头型号</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("cameraname", "size" => 30,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="apiurl">摄像头ip</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("cameraip", "size" => 50,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="apiurl">mac地址</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("mac", "size" => 50,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="apiurl">状态</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("mstatus", "size" => 30,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="apiurl">创建时间</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("createtime", "size" => 30,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="apiurl">创建者</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("creator", "size" => 30,"disabled"=>"disabled")) ?>
+        </td>
+    </tr>  
+
+    <tr><td></td><td></td></tr>
+    
+</table>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

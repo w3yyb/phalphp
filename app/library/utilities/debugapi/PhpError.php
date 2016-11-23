@@ -5,7 +5,7 @@
  * Capture PHP related warnings/errors
  *
  * @package Utilities
- * @author Lenix
+ * @author Itv
  * @version 1.0
  * @link
  */

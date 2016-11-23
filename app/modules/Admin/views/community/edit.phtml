@@ -1,0 +1,64 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加监控分类</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/monitorcategory/index"><span class="am-icon-plus"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php echo $this->tag->form(["monitorcategory/save","class"=>"am-form am-form-horizontal"]) ?>
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd am-table-striped admin-content-table">
+    <tr>
+        <td>
+            <label for="username">名称</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("categoryname", "size" => 30,"readonly"=>"readonly")) ?>
+        </td>
+    </tr>
+
+              <tr>
+                  <td >
+                      <label for="password">父级</label>
+                  </td>
+                  <td>
+                      <?php echo $parentid ?>
+                  </td>
+              </tr>
+
+    <tr>
+        <td><?php echo $this->tag->hiddenField("mcid") ?></td>
+        <td><?php echo $this->tag->submitButton(["设置","class"=>"am-btn am-btn-primary"]) ?></td>
+    </tr>
+</table>
+  </form>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

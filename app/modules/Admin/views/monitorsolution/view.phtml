@@ -1,0 +1,206 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">设置监控方案</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/monitorsolution/index"><span class="am-icon-mail-reply"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd   admin-content-table">
+    <tr>
+        <td>
+            <label for="name">方案名</label>
+        </td>
+        <td>
+            <?php echo $this->tag->textField(array("name", "size" => 30, "disabled"=>"disabled", 'placeholder' => '请输入方案名')) ?>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <label for="transtype">文件传输类型</label>
+        </td>
+        <td>
+            <?php if ($transtype==1) {echo 'file';}else{echo 'remote';}?>
+
+
+             </td>
+        <td>file:内存保存,remote:远程传输</td>
+    </tr>
+              <tr>
+                  <td>
+                      <label for="targetpath">远程传输路径</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("targetpath", "size" => 30,"disabled"=>"disabled", 'placeholder' => '请输入远程传输路径')) ?>
+                      </td>
+                  <td>当选remote 时写远程传输服务器接受地址，当选file时，写本地地址</td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="storepath">本地存储路径</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("storepath", "size" => 30, "disabled"=>"disabled",'placeholder' => '请输入本地存储路径')) ?>
+                  </td>
+                  <td>当选remote 时使用,文件转存实际地址</td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="slicereportpath">切片信息汇报地址</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("slicereportpath", "size" => 30, "disabled"=>"disabled",'placeholder' => '请输入切片信息汇报地址')) ?>
+                  </td>
+                  <td>：notify </td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="httpprefix">m3u8列表切片地址前缀</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("httpprefix", "size" => 30, "disabled"=>"disabled",'placeholder' => '请输入m3u8列表切片地址前缀')) ?>
+                  </td>
+                  <td></td>
+              </tr>
+
+
+              <tr>
+                  <td>
+                      <label for="slicenumber">本地存储切片数量</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("slicenumber", "size" => 30, "disabled"=>"disabled",'placeholder' => '请输入本地存储切片数量')) ?>
+                  </td>
+                  <td>0代表有保存，有回看，非0代表内存保存片数</td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="cliptime">片长</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("cliptime", "size" => 30,"disabled"=>"disabled", 'placeholder' => '请输入片长')) ?>
+                  </td>
+                  <td>单位秒</td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="cachetime">传输缓存时间</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("cachetime", "size" => 30,"disabled"=>"disabled", 'placeholder' => '请输入传输缓存时间')) ?>
+                  </td>
+                  <td>单位秒</td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="speedfactor">远程传输速度因子</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("speedfactor", "size" => 30,"disabled"=>"disabled", 'placeholder' => '请输入远程传输速度因子')) ?>
+                  </td>
+                  <td>至少1.0以上  1.0--10之间</td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="isvoice">是否有声</label>
+                  </td>
+                  <td>
+                      <?php if ($isvoice==1) {echo '有声';}else{echo '无声';}?>
+
+                   </td>
+                  <td> </td>
+              </tr>
+
+
+              <tr>
+                  <td>
+                      <label for="remark">备注</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textArea(
+                          [
+                              "remark",
+                              "",
+                              "cols" => "30",
+                              "rows" => 6,
+                              "disabled"=>"disabled",
+                          ]
+                      ) ?>                  </td>
+                  <td> </td>
+              </tr>
+
+
+              <tr>
+                  <td>
+                      <label for="ssid">创建时间</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("createtime", "size" => 30, "disabled"=>"disabled",'placeholder' => '')) ?>
+                  </td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td>
+                      <label for="ssid">更新时间</label>
+                  </td>
+                  <td>
+                      <?php echo $this->tag->textField(array("updatetime", "size" => 30, "disabled"=>"disabled",'placeholder' => '')) ?>
+                  </td>
+                  <td></td>
+              </tr>
+
+              <tr>
+                  <td>
+                      <label for="status">状态</label>
+                  </td>
+                  <td>
+                       <?php if ($status==1) {echo '启用';}else{echo '禁用';}?>
+                       </td>
+                  <td> </td>
+              </tr>
+
+
+    <tr>
+        <td><?php echo $this->tag->hiddenField("msid") ?></td>
+
+        <td> </td>
+    </tr>
+</table>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

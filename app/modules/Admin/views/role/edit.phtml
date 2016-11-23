@@ -1,0 +1,69 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">编辑角色</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/role/index"><span class="am-icon-mail-reply"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php echo $this->tag->form(["role/save","class"=>"am-form am-form-horizontal lszh-validate"]) ?>
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd am-table-striped admin-content-table">
+    <tr>
+        <td width="160">
+            <label for="rolename">角色名称(英文)</label>
+        </td>
+        <td width="450">
+          <div class="am-form-group">
+            <?php echo $this->tag->textField(array("rolename", "size" => 30,'placeholder' => '请输入角色名',"maxlength"=>"30","required"=>"","class"=>"js-pattern-english","data-validation-message" => "请输入角色名称(英文)")) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+    <tr>
+        <td width="160">
+            <label for="roleinfo">角色描述(中文)</label>
+        </td>
+        <td width="450">
+          <div class="am-form-group">
+            <?php echo $this->tag->textField(array("roleinfo", "size" => 30, 'placeholder' => '请输入角色描述',"maxlength"=>"30","required"=>"","class"=>"js-pattern-chinese","data-validation-message" => "请输入角色名称(中文)")) ?>
+          </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+    <tr>
+        <td width="160"><?php echo $this->tag->hiddenField("roleid") ?></td>
+        <td width="450"><?php echo $this->tag->submitButton(["设置","class"=>"am-btn am-btn-primary"]) ?></td>
+        <td></td>
+    </tr>
+</table>
+  </form>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

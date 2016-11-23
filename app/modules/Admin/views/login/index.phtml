@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  
+  <title>登录 - 智慧监控管理系统</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="/assets/img/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/admin.css"/>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      margin-top: 30px;
+    }
+    .title{
+      text-align: center;
+      color: #0e90d2;
+      font-size:40px;
+      line-height: 50px;
+      font-weight:500;
+    }
+    .copy{
+      text-align: center;
+    }
+    .header p {
+      font-size: 14px;
+    }
+    .am-u-sm-centered{
+      position:absolute;
+      left:0;top:0;bottom:0;right:0;
+      margin:auto;
+      height: 600px;
+    }
+    label {color:FFFFF;}
+    
+    input{ background-color: transparent; background:none; border:none;}
+    
+  </style>
+</head>
+<body>
+
+<div class="header"> 
+  <hr />
+</div>
+<div class="am-g">
+  <div class="am-u-lg-4 am-u-md-8 am-u-sm-centered">
+	<h3 class="title">智慧监控</h3>
+    <hr>
+    <form  method="post" action="" class="am-form" >
+
+      <label for="email">账号:</label>
+      <!-- <input type="text" name="username" id="email" value=""> -->
+      <?php echo $this->tag->textField(array("username", "size" => "30","style"=>" border:1px solid #DDDDDD; background-color:transparent")) ?>
+      <br>
+      <label for="password">密码:</label>
+      <!--  <input type="password" name="pwd" id="password" value="">-->
+      <?php echo $this->tag->passwordField(array("password", "size" => "30","style"=>" border:1px solid #DDDDDD; background-color:transparent")) ?>
+      <br />
+      <label for="code">验证码:</label>
+      <div>
+        <input type="text" id="code_num" name="code_num" maxlength="4" style=" width: 200px;display: block;float: left;border:1px solid #DDDDDD; background-color:transparent"/>
+        <img src="/login/imgver" id="getcode_num" title="看不清，点击换一张" align="absmiddle" style="float: left;margin-left: 10px;" height="37">
+        <br />
+      </div>
+
+      <div class="am-cf" style="padding-top: 20px;clear: both;">
+        <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-fl am-btn-block">
+      </div>
+    </form>
+<?php echo $this->getContent(); ?>
+    <p class="copy">Copyright © 2016 iTV All Rights Reserved.</p>
+  </div>
+</div>
+</body>
+</html>
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<script >
+  $(function(){
+    //数字验证
+    $("#getcode_num").click(function(){
+      $(this).attr("src",'/login/imgver/' + Math.random());
+    });
+  });
+  </script>

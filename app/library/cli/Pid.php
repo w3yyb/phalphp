@@ -4,7 +4,7 @@
  * Handling of the ProcessID(Pid) file's creation, removal and existance
  *
  * @package Cli
- * @author Lenix
+ * @author Itv
  */
 
 namespace Cli;
