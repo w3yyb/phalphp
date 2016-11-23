@@ -1,12 +1,12 @@
 {
-    "name": "itv/smartmonitor",
+    "name": "w3yyb/phalphp",
     "type": "project",
-    "description": "smart monitor",
+    "description": "phalphp",
     "keywords": [
-        "itv",
-        "smartmonitor"
+        "phalcon",
+        "phalphp"
     ],
-    "homepage": "https://github.com/w3yyb/smartmonitor",
+    "homepage": "https://github.com/w3yyb/phalphp",
     "license": "MIT",
     "authors": [
         {
@@ -14,13 +14,8 @@
             "email": "yangyb@itv.cn",
             "homepage": "http://lenix.xyz",
             "role": "Developer"
-        },
-        {
-            "name": "hulj",
-            "email": "hulj@itv.cn",
-            "homepage": "http://www.itv.com.cn",
-            "role": ""
         }
+         
         
     ],
     "require": {

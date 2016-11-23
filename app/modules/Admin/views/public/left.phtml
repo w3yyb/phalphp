@@ -9,23 +9,9 @@
 
 
 
-        <li class="admin-parent">
-          <a class="am-cf am-collapsed" data-am-collapse="{target: '#collapse-nav2'}"><span class="am-icon-video-camera"></span> 监控管理 <span class="<?php if(in_array($activeinfo, array('monitorsolution','cameratype','sliceserver','monitor','monitorcategory'))){echo 'am-icon-angle-down';}else{echo 'am-icon-angle-right';}?> am-fr am-margin-right"></span></a>
-          <ul class="am-list admin-sidebar-sub am-collapse <?php if(in_array($activeinfo, array('monitorsolution','cameratype','sliceserver','monitor','monitorcategory'))){echo 'am-in';}?>" id="collapse-nav2">
-            <li <?php if($activeinfo == 'monitorsolution'){echo 'class="am-active"';}?>><a href="/monitorsolution/index"><span class="am-icon-puzzle-piece"></span> 监控方案</a></li>
-            <li <?php if($activeinfo == 'sliceserver'){echo 'class="am-active"';}?>><a href="/sliceserver/index"><span class="am-icon-server"></span> 切片服务器</a></li>
-            <li <?php if($activeinfo == 'monitor'){echo 'class="am-active"';}?>><a href="/monitor/index">&nbsp;<span class="am-icon-map-marker"></span>&nbsp;&nbsp;监控点</a></li>
-            <li <?php if($activeinfo == 'monitorcategory'){echo 'class="am-active"';}?>><a href="/monitorcategory/index"><span class="am-icon-sitemap"></span> 监控分类</a></li>
-            <li <?php if($activeinfo == 'cameratype'){echo 'class="am-active"';}?>><a href="/cameratype/index"><span class="am-icon-camera"></span> 摄像头型号</a></li>
-          </ul>
-        </li>
+     
 
-          <li class="admin-parent">
-              <a class="am-cf am-collapsed" data-am-collapse="{target: '#collapse-nav3'}"><span class="am-icon-tasks"></span> 智能调度中心 <span class="<?php if(in_array($activeinfo, array('monitortask'))){echo 'am-icon-angle-down';}else{echo 'am-icon-angle-right';}?> am-fr am-margin-right"></span></a>
-              <ul class="am-list admin-sidebar-sub am-collapse <?php if(in_array($activeinfo, array('monitortask'))){echo 'am-in';}?>" id="collapse-nav3">
-                  <li <?php if($activeinfo == 'monitortask'){echo 'class="am-active"';}?>><a href="/monitortask/index/0?mtstatus=2"><span class="am-icon-list"></span> 监控任务 </a></li>
-              </ul>
-          </li>
+         
 
 
         <?php if($communityset == 1){?>

@@ -10,8 +10,8 @@ return [
 		'adapter' => 'Mysql', /* Possible Values: Mysql, Postgres, Sqlite */
 		'host' => '192.168.6.76',
 		'username' => 'root',
-		'password' => 'password111',
-		'name' => 'smartmonitor',
+		'password' => '111111',
+		'name' => 'database',
 		'port' => 3306
     ),
     'app' => array(

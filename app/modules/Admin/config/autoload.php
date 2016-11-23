@@ -18,10 +18,6 @@ $autoload = [
 	'Interfaces' => $dir . '/library/interfaces/',
 	'Controllers' => $dir . '/modules/Admin/controllers/',
 	'Models' => $dir . '/models/',
-	'Models\Services\Service' => $dir . '/models/services/Service/',
-	'Models\Repositories' => $dir . '/models/repositories/',
-	'Models\Repositories\Repository' => $dir . '/models/repositories/Repository/',
-	'Common' => $dir . '/library/common/',
 ];
 
 return $autoload;

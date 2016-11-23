@@ -11,27 +11,27 @@
 return [
 	'database' => array(
 		'adapter' => 'Mysql', /* Possible Values: Mysql, Postgres, Sqlite */
-		'host' => '192.168.41.20',
-		'username' => 'smart',
-		'password' => '1234qwer!',
-		'name' => 'smartmonitor',
+		'host' => 'localhost',
+		'username' => 'root',
+		'password' => '111111',
+		'name' => 'database',
 		'port' => 3306
     ),
 	'db2' => array(
 		'adapter'     => 'Mysql',
-		'host'        => '192.168.41.20',
-		'username'    => 'smart',
-		'password'    => '1234qwer!',
-		'name'      => 'smartcommunity',
+		'host'        => 'localhost',
+		'username'    => 'root',
+		'password'    => '111111!',
+		'name'      => 'database',
 		'port' => 3306,
 		'tablePrefix' => 'smt_'
 	),
 	'logdb' => array(
 		'adapter' => 'Mysql', /* Possible Values: Mysql, Postgres, Sqlite */
-		'host' => '192.168.41.20',
-		'username' => 'smart',
-		'password' => '1234qwer!',
-		'name' => 'smartmonitor',
+		'host' => 'localhost',
+		'username' => 'root',
+		'password' => '111111!',
+		'name' => 'database',
 		'port' => 3306
 	),
     'app' => array(
@@ -40,7 +40,7 @@ return [
     ),
 	'tasktime' => 5,
 	'communityset' => 1, //1开启，0关闭
-   'serverowner'=>array('1'=>'滨州','2'=>'泰国','3'=>'QA环境')
+   'serverowner'=>array('1'=>'a','2'=>'b','3'=>'c')
   
 ];
   
