@@ -5,7 +5,7 @@
  *
  * Execute a command thru the shell
  *
- * @author Lenix
+ * @author Itv
  * @version 1.0
  * @package cli
  */

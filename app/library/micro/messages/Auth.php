@@ -6,7 +6,7 @@
  *
  * @package Micro
  * @subpackage Messages 
- * @author Lenix
+ * @author Itv
  */
 
 namespace Micro\Messages;

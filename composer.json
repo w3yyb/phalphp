@@ -1,0 +1,32 @@
+{
+    "name": "w3yyb/phalphp",
+    "type": "project",
+    "description": "phalphp",
+    "keywords": [
+        "phalcon",
+        "phalphp"
+    ],
+    "homepage": "https://github.com/w3yyb/phalphp",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lenix",
+            "email": "yangyb@itv.cn",
+            "homepage": "http://lenix.xyz",
+            "role": "Developer"
+        }
+         
+        
+    ],
+    "require": {
+        "php" : "7.0.*",
+        "ext-phalcon": "3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "app/"
+        }
+    }
+   
+    
+}

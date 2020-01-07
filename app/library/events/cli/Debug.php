@@ -5,7 +5,7 @@
  * 
  * @package Cli
  * @subpackage Events
- * @author Lenix
+ * @author Itv
  * @version 1.0
  */
 

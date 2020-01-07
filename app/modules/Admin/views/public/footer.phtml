@@ -1,0 +1,65 @@
+ 
+
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<!-- <footer>
+  <hr>
+  <p class="am-padding-left">Copyright ©2010- 2016  All  Rights Reserved.</p>
+</footer> -->
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="/assets/js/amazeui.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<script src="/assets/js/moment.min.js"></script>
+<script src="/assets/js/zh-cn.js"></script>
+<script src="/assets/js/amazeui.datetimepicker-se.min.js"></script>
+<script src="/assets/js/addvalidate.js"></script>
+
+<script >
+  $(function() {
+    var $dp6 = $('#datetimepicker6');
+    var $dp7 = $('#datetimepicker7');
+    $dp6.datetimepicker();
+    $dp7.datetimepicker({
+      useCurrent: false //Important! See issue #1075
+    });
+    $dp6.on('dp.change', function(e) {
+      $dp7.data('DateTimePicker').minDate(e.date);
+    });
+    $dp7.on('dp.change', function(e) {
+      $dp6.data('DateTimePicker').maxDate(e.date);
+    });
+  });
+
+  /* 左侧菜单增加切换效果 */
+  var initMenu = function($this){
+    var $right = $this.find(".am-margin-right");
+    if($this.hasClass("am-collapsed")){
+        $right.removeClass("am-icon-angle-down").addClass("am-icon-angle-right");
+    }else{
+        $right.removeClass("am-icon-angle-right").addClass("am-icon-angle-down");
+    }
+  },initMenuNum = 0;
+  $("#admin_sidebar_list a.am-cf").click(function(){
+      initMenuNum++;
+      var $this = $(this);
+      setTimeout(function(){
+          if(initMenuNum >= 1) initMenu($this);
+          initMenuNum = 0;
+      },200)
+  })
+  /* 左侧菜单增加切换效果 end */
+</script>
+
+</body>
+</html>
+
+ 

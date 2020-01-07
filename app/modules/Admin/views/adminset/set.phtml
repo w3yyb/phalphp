@@ -1,0 +1,68 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">编辑管理员</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-6 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/admin/index"><span class="am-icon-mail-reply"></span> 返回</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php echo $this->tag->form(["adminset/save","class"=>"am-form am-form-horizontal lszh-validate"]) ?>
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        
+          <table class="am-table am-table-bd am-table-striped admin-content-table">
+    <tr>
+        <td width="120">
+            <label for="username">用户名</label>
+        </td>
+        <td width="450">
+            <?php echo $this->tag->textField(array("username", "size" => 30,"readonly"=>"readonly")) ?>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td width="120">
+            <label for="password">密码</label>
+        </td>
+        <td width="450">
+            <div class="am-form-group">
+            <?php echo $this->tag->passwordField(array("password", "size" => 30,"minlength"=>"4","maxlength"=>"16", 'placeholder' => '请输入密码',"required"=>"","autocomplete"=>"off" ,"data-validation-message" => "请输入密码,4-16位")) ?>
+            </div>
+        </td>
+        <td><span class="lszh-validate-tip-star">*</span></td>
+    </tr>
+
+    <tr>
+        <td width="120"><?php echo $this->tag->hiddenField("id") ?></td>
+        <td width="450"><?php echo $this->tag->submitButton(["设置","class"=>"am-btn am-btn-primary"]) ?></td>
+        <td></td>
+    </tr>
+</table>
+  </form>
+      </div>
+
+  </div>
+  <!-- content end -->
+
+</div>
+<?php $this->partial("public/footer") ?>

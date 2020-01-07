@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*******************公共样式*******************/
+body {color:#333;}
+html, body {background:#FFF;}
+
+a:link{ color:#333;}
+a:visited{ color:#333;}
+a:hover{ color:#09C;}
+a:active{ color:#09C;}
+
+a.bold:link{ color:#333; font-weight:bold; text-decoration:none;}
+a.bold:visited{ color:#333;}
+a.bold:hover{ color:#09C;}
+a.bold:active{ color:#09C;}
+
+
+/******************头部样式********************/
+
+#header {background:url(../images/headerBg.jpg); border-bottom:1px solid #A4C5D2;}
+.title{color:#666;}
+
+/*导航样式*/
+.nav{background:url(../images/navBg.jpg) repeat-x;}
+.navList li a:hover ,.navList li a:active{ background:url(../images/navBut.jpg) repeat-x; }
+.navList .menuOn{ background:url(../images/navButOn.jpg) repeat-x; color:#FFF;}
+.navList .menuOn a{color:#FFF;}
+
+
+
+/******************尾部样式********************/
+
+#footer {background:url(../images/footerBg.jpg);}
+
+
+/******************当前位置样式********************/
+
+.adr{ background:#F4FCFF;border-bottom:1px solid #A4C5D2;}
+
+/******************查询样式********************/
+
+
+
+
+
+/******************操作按钮样式********************/
+.box{ background:url(../images/bg.jpg) repeat-x;border:1px #CDDFE7 solid;}
+
+
+/******************表单页样式********************/
+
+

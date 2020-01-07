@@ -5,7 +5,7 @@
  *
  * @package Events
  * @subpackage Api
- * @author Lenix
+ * @author Itv
  * @version 1.0
  */
 

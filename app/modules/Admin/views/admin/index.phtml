@@ -1,0 +1,136 @@
+<?php $this->partial("public/header") ?>
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php $this->partial("public/left") ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-margin">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">管理员管理</strong></div>
+    </div>
+
+	<div class="am-g">
+      <div class="am-u-md-9 am-cf">
+        <div class="am-fl am-cf">
+          <div class="am-btn-toolbar am-fl">
+            <div class="am-btn-group am-btn-group-xs">
+              <a class="am-btn am-btn-default" href="/admin/new"><span class="am-icon-plus"></span> 新增</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <?php echo $this->tag->form(array("admin/index", "autocomplete" => "off")) ?>
+      <div class="am-u-md-3 am-cf">
+        <div class="am-fr">
+          <div class="am-input-group">
+          
+            <input type="text" class="am-form-field" name="username">
+                <span class="am-input-group-btn">
+                  <input class="am-btn am-btn-default" type="submit" value="搜索">
+                </span>
+                
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      <?php use Phalcon\Tag; ?>
+
+		<?php echo $this->getContent(); ?>
+        <table class="am-table am-table-bd am-table-striped am-table-compact am-table-hover admin-content-table am-table-bordered">
+          <thead>
+          <tr>
+            <th width="60">ID</th>
+            <th width="160">用户名</th>
+            <th width="160">注册时间</th>
+            <th width="160">登录时间</th>
+            <th width="100">角色</th>
+            <th width="100">管理</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php foreach ($page->items as $admin) { ?>
+          <tr>
+            <td><?php echo $admin->id ?></td>
+            <td><?php echo $admin->username ?></td>
+            <td><?php echo date('Y-m-d H:i:s', $admin->regtime) ?></td>
+            <td><?php 
+	            if($admin->logintime)
+	            echo date('Y-m-d H:i:s', $admin->logintime); 
+	            else 
+	            echo '暂无登录';
+	            ?>
+	        </td>
+          <td><?php
+                foreach($roleid as $role){
+                  if($role->roleid == $admin->roleid){echo $role->rolename;}
+                }
+
+              ?></td>
+
+            <td>
+              <?php echo $this->tag->linkTo(array("admin/edit/" . $admin->id, "编辑")); ?>
+              <a href="javascript:void(0);" data-href='/admin/delete/<?php echo $admin->id ?>' class='delete'>删除</a>
+            </td>
+          </tr>
+    	  <?php } ?>
+          </tbody>
+        </table>
+        <?php if($page->total_pages > 1){?> 
+        <div class="am-cf">
+  			<div class="am-fr">
+    			<ul class="am-pagination">
+    				<li class="am-disabled"><?php echo $page->current, "/", $page->total_pages ?></li>
+      				<li><?php echo $this->tag->linkTo("admin/index?page=1", "首页") ?></li>
+      				<li><?php echo $this->tag->linkTo("admin/index?page=" . $page->before, "上一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("admin/index?page=" . $page->next, "下一页") ?></li>
+      				<li><?php echo $this->tag->linkTo("admin/index?page=" . $page->last, "末页") ?></li>
+      				
+    			</ul>
+  			</div>
+		</div>
+		<?php }?>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd"></div>
+    <div class="am-modal-bd">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
+<?php $this->partial("public/footer") ?>
+<script type="text/javascript">
+$(function() {
+  $('.delete').on('click', function() {
+      $('.am-modal-hd').html('删除数据');
+      $('.am-modal-bd').html('你确定要删除这条记录吗？');
+      var deleteHref = $(this).attr("data-href");
+      $('#my-confirm').modal({
+        relatedTarget: this,
+        onConfirm: function(options) {
+          window.location.href = deleteHref;
+        },
+        // closeOnConfirm: false,
+        onCancel: function() {
+          return false;
+        }
+      });
+    });
+
+});
+</script>

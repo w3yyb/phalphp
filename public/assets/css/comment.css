@@ -1,0 +1,149 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/*******************公共样式*******************/
+body {margin:0px; padding:0px; font-size:12px; font-family:Arial, Helvetica, sans-serif;}
+p, ul, li, frame { margin:0px; padding:0px;}
+ul, li { display:block;}
+ul { list-style:none;}
+h3 { padding:0px; margin:0px;}
+img { border:none;}
+
+
+.select1{ width:190px; height:24px;}
+.select2{ width:80px;margin-top:8px; margin-left:10px;}
+input.input1{width:150px; padding:2px;}
+.select3{width:187px; }
+
+/******************头部样式********************/
+
+#header {height:51px; }
+.logo{margin-left:30px; padding-top:8px; }
+.logo img{ float:left;}
+.topR{ float:right; margin-right:5px; text-align:right;}
+.title{float:left; font-family: "微软雅黑"; font-size:24px; margin-left:20px; }
+
+/*导航样式*/
+.nav{height:34px;}
+.navList{ margin-left:20px;}
+.navList li{ width:122px; float:left; margin-left:10px; text-align:center; line-height:33px;height:33px;}
+.navList li a{ display:block; width:122px; line-height:33px;height:33px; font-size:14px;}
+.navList li a:link ,.navList li a:visited{ text-decoration:none; font-weight:bold;}
+
+
+
+/******************尾部样式********************/
+
+#footer {height:45px;text-align:center; line-height:20px;padding-top:7px}
+
+
+/******************当前位置样式********************/
+
+.adr{ line-height:30px; height:30px;  padding-left:10px;}
+
+/******************查询样式********************/
+
+.add{ line-height:30px; padding-left:10px; padding-top:3px;}
+.sele{ float:right; }
+.sele select {
+    max-width:120px; }
+
+
+/******************表格样式********************/
+
+.tex1{ width:260px; height:60px;}
+.tabDiv{margin-left:2px;}
+.tab{ width:100%; text-align:center;}
+.tab td{height:22px;}
+.tabTi{ height:40px; font-weight:bold;}
+.no{ border-left:none;}
+.ctrl a{ margin-left:20px;}
+
+
+/******************操作按钮样式********************/
+
+.box{ padding:3px; margin-left:2px; height:24px;}
+.box input{ float:left; margin-left:15px;}
+
+
+
+/******************表单页样式********************/
+
+.reg{ margin-left:10px; margin-top:20px;}
+.reg li{margin-top:20px;overflow:hidden;}
+.reg li div{ line-height:20px;}
+.reg .regName{ display:block; width:150px; text-align:right; float:left;}
+.reg .regName1{ display:block; width:180px; text-align:right; float:left;}
+.boxBut input{  margin-left:150px; float:left;}
+.input{margin-left:70px; float:left;}
+.boxBut a{ margin-top:10px; margin-left:100px; float:left;}
+.inputDuan{ width:40px;}
+
+/******************登陆页样式********************/
+
+#main {text-align:center;overflow:auto;}
+.login{ margin:80px auto 0 auto; width:468px; height:279px; text-align:left;}
+.logTitle{ margin-left:45px; padding-top:17px;font-size:16px; font-family:"微软雅黑";font-weight:bold;}
+.log{ margin:20px 50px 0 50px;}
+.log li{ height:20px; padding:15px 0; *padding:10px 0;}
+.logTi{ font-size:14px; font-family:"微软雅黑"; isplay:block; float:left;width:120px; text-align:right;}
+.log li input{ padding:2px; width:150px; float:left;}/*height:24px;*/
+.logBut{ width:450px; margin-left:9px; padding:15px 0px; text-align:right;}
+.inputBut{width:77px; height:24px; cursor:hand; cursor:pointer; border:none; margin-right:30px; font-size:14px; font-family:"微软雅黑";}
+
+
+/******************左侧导航样式********************/
+
+.tit {height: 27px;font:bold 12px/25px "lucida Grande", verdana, lucida, Arial, helvetica, "宋体", sans-serif;text-indent: 25px;position: relative;	}
+.tit a ,.tit a:link , .tit a hover{display:block;text-decoration:none;	background-repeat: no-repeat;background-position: 10px 8px;cursor: pointer;}
+.titpic {position: absolute;height: 32px;width: 32px;left: 0px;bottom: 0px;}
+.list{font-size: 12px;text-align:left;padding-bottom:10px;voice-family:"\"}\"";voice-family:inherit;	overflow:hidden;}
+.list ul{list-style-type:none;margin:0;padding:0;}
+.list li{line-height:30px;height:30px;margin:0;padding:0;padding-left:25px;}
+.list li a{ text-decoration:none;}
+.all{ height:100%;}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+
+.tabLisinput , .tabLisTit{ display:block; line-height:20px; height:20px; *line-height:24px; *height:24px; float:left;}
+ .tabLisTit{ margin-right:15px;}
+ 
+ /************选择产品探弹出层样式**************/
+ .springDiv{ padding-bottom:10px; }
+.sprTitle{ padding:6px 10px 6px 20px; height:22px;font-weight:bold;}
+.sprAdr{text-align:right; padding-right:10px;}
+.sprFrom{ width:48%; *width:47%; margin-left:2%; margin-top:10px; float:left;}
+.int{display:block; width:20px; float:left; }
+.sprFrom li{ margin:8px 0; line-height:20px; height:20px; }
+.sprTitle span.closeBut{ float:right;}
+input.close{ background:url(../images/close.gif) no-repeat; width:27px; height:27px; border:none; cursor:hand; cursor:pointer;}
+
+.otherInput { width:250px }

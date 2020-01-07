@@ -4,7 +4,7 @@
  * cli
  * Event to trigger profiling SQL statements
  *
- * @author Lenix
+ * @author Itv
  * @version 1.0
  */
 

@@ -1,0 +1,57 @@
+
+
+ <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list" id="admin_sidebar_list">
+        <li <?php if($activeinfo == 'index'){echo 'class="am-active"';}?>><a href="/index"><span class="am-icon-home"></span> 首页</a></li>
+
+
+
+
+
+     
+
+         
+
+
+        <?php if($communityset == 1){?>
+          <li <?php if($activeinfo == 'community'){echo 'class="am-active"';}?>><a href="/community/index"><span class="am-icon-group"></span> 社区信息管理</a></li>
+          <?php } ?>
+          <li class="admin-parent">
+              <a class="am-cf am-collapsed" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-cog"></span> 系统管理 <span class="<?php if(in_array($activeinfo, array('setting','admin','app','log'))){echo 'am-icon-angle-down';}else{echo 'am-icon-angle-right';}?> am-fr am-margin-right"></span></a>
+              <ul class="am-list admin-sidebar-sub am-collapse <?php if(in_array($activeinfo, array('setting','admin','app','log'))){echo 'am-in';}?>" id="collapse-nav">
+                  <li <?php if($activeinfo == 'setting'){echo 'class="am-active"';}?>><a href="/setting/index"><span class="am-icon-cog"></span> 系统配置 </a></li>
+                  <li <?php if($activeinfo == 'admin'){echo 'class="am-active"';}?>><a href="/admin/index"><span class="am-icon-user-secret"></span> 管理员管理 </a></li>
+                  <li <?php if($activeinfo == 'app'){echo 'class="am-active"';}?>><a href="/app/index"><span class="am-icon-user"></span> APP管理 </a></li>
+                  <li <?php if($activeinfo == 'log'){echo 'class="am-active"';}?>><a href="/log/index"><span class="am-icon-calendar"></span> 日志管理</a></li>
+
+              </ul>
+          </li>
+          <!--
+          am-icon-angle-down 箭头展开
+          am-icon-angle-right 箭头收起
+          am-in 菜单展开
+          am-active 对应页面
+          -->
+          <li class="admin-parent">
+              <a class="am-cf am-collapsed" data-am-collapse="{target: '#collapse-nav1'}"><span class="am-icon-check-square"></span> 权限管理 <span class="<?php if(in_array($activeinfo, array('role','resource'))){echo 'am-icon-angle-down';}else{echo 'am-icon-angle-right';}?> am-fr am-margin-right"></span></a>
+              <ul class="am-list admin-sidebar-sub am-collapse <?php if(in_array($activeinfo, array('role','resource'))){echo 'am-in';}?>" id="collapse-nav1">
+                  <li <?php if($activeinfo == 'role'){echo 'class="am-active"';}?>><a href="/role/index"><span class="am-icon-male"></span> 角色管理 </a></li>
+                  <li <?php if($activeinfo == 'resource'){echo 'class="am-active"';}?>><a href="/resource/index"><span class="am-icon-th"></span> 资源管理 </a></li>
+
+
+              </ul>
+          </li>
+      <li><a href="/login/logout"><span class="am-icon-sign-out"></span> 注销 </a></li>
+
+      </ul>
+
+    </div>
+  </div>
+  <!-- sidebar end -->
+
+
+
+
+
+ 
