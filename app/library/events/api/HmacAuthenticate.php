@@ -70,7 +70,7 @@ class HmacAuthenticate extends \Phalcon\Events\Manager implements IEvent {
                                     
                                     if ((time() - $iRequestTime) <= $this->_maxRequestDelay) { // 2nd security level - ensure request time hasn't expired
                                         
-                                        $allowed = true; // gain access, everyting ok
+                                        $allowed = true; // gain access, everything ok
                                         
                                     }
                                     

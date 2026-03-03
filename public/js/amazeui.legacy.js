@@ -2628,7 +2628,7 @@
 
             // update slider.slides
             slider.slides = $(slider.vars.selector + ':not(.clone)', slider);
-            // re-setup the slider to accomdate new slide
+            // re-setup the slider to accommodate new slide
             slider.setup();
 
             //FlexSlider: added() Callback
@@ -2655,7 +2655,7 @@
 
             // update slider.slides
             slider.slides = $(slider.vars.selector + ':not(.clone)', slider);
-            // re-setup the slider to accomdate new slide
+            // re-setup the slider to accommodate new slide
             slider.setup();
 
             // FlexSlider: removed() Callback

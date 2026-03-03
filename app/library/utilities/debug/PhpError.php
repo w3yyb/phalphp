@@ -21,8 +21,8 @@ class PhpError {
 	 *
 	 * @param int		php error number
 	 * @param string	php error description
-	 * @param string	php file where the error occured
-	 * @param int		php line where the error occured
+	 * @param string	php file where the error occurred
+	 * @param int		php line where the error occurred
 	 */
 	public static function errorHandler($errNo, $errStr, $errFile, $errLine) {
 
